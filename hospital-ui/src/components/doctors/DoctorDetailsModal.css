@@ -1,0 +1,196 @@
+.doctor-details-modal {
+    max-width: 700px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.doctor-details-content {
+    padding: 24px;
+}
+
+.doctor-header-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 24px;
+}
+
+.doctor-photo-large {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.doctor-avatar-large {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.doctor-header-info h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 8px 0;
+}
+
+.doctor-header-info .specialization {
+    color: #667eea;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 12px 0;
+}
+
+.info-section {
+    margin-bottom: 24px;
+}
+
+.info-section h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0 0 16px 0;
+}
+
+.info-grid {
+    display: grid;
+    gap: 16px;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.info-icon {
+    font-size: 20px;
+    color: #667eea;
+    margin-top: 2px;
+}
+
+.info-label {
+    display: block;
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 4px;
+}
+
+.info-value {
+    display: block;
+    font-size: 15px;
+    color: #1e293b;
+    font-weight: 500;
+}
+
+.bio-text {
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.stat-box {
+    text-align: center;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 8px;
+}
+
+.stat-number {
+    font-size: 32px;
+    font-weight: 700;
+    color: #667eea;
+    margin-bottom: 4px;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: #64748b;
+}
+
+.appointments-list-small {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.appointment-item-small {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: #f8fafc;
+    border-radius: 8px;
+}
+
+.appointment-item-small strong {
+    display: block;
+    color: #1e293b;
+    margin-bottom: 4px;
+}
+
+.appointment-item-small p {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0;
+}
+
+.status-tag {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-tag.scheduled {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.status-tag.completed {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.status-tag.cancelled {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.btn-delete {
+    flex: 1;
+    padding: 12px;
+    background: white;
+    border: 2px solid #ef4444;
+    color: #ef4444;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-delete:hover {
+    background: #ef4444;
+    color: white;
+}

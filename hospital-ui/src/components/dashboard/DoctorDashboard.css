@@ -1,0 +1,150 @@
+.doctor-dashboard-container {
+    padding: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.dashboard-header {
+    margin-bottom: 40px;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    padding: 40px;
+    border-radius: 20px;
+    color: white;
+    box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.3);
+}
+
+.dashboard-header h1 {
+    margin: 0 0 10px 0;
+    font-size: 2.5rem;
+}
+
+.dashboard-header p {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 1.1rem;
+}
+
+.appointments-section {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #f3f4f6;
+    padding-bottom: 15px;
+}
+
+.section-header h2 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #1f2937;
+}
+
+.badge {
+    background: #e0e7ff;
+    color: #4338ca;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.appointments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.appointment-card {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background: #f9fafb;
+    border-radius: 16px;
+    transition: transform 0.2s;
+    border: 1px solid #f3f4f6;
+}
+
+.appointment-card:hover {
+    transform: translateX(5px);
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-color: #e5e7eb;
+}
+
+.time-slot {
+    font-weight: 700;
+    color: #6366f1;
+    font-size: 1.1rem;
+    min-width: 100px;
+    padding-right: 20px;
+    border-right: 2px solid #e5e7eb;
+    margin-right: 20px;
+}
+
+.patient-info {
+    flex: 1;
+}
+
+.patient-info h3 {
+    margin: 0 0 5px 0;
+    color: #1f2937;
+}
+
+.reason {
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-action {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+    background: #6366f1;
+    color: white;
+}
+
+.btn-action:hover {
+    background: #4f46e5;
+}
+
+.btn-action.secondary {
+    background: #e0e7ff;
+    color: #4338ca;
+}
+
+.btn-action.secondary:hover {
+    background: #c7d2fe;
+}
+
+.no-appointments {
+    text-align: center;
+    padding: 40px;
+    color: #9ca3af;
+    font-style: italic;
+}
+
+.error-message {
+    text-align: center;
+    padding: 60px;
+    color: #ef4444;
+}

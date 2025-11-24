@@ -1,0 +1,126 @@
+.patients-table-container {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    overflow-x: auto;
+}
+
+.patients-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.patients-table thead {
+    background: #f8fafc;
+}
+
+.patients-table th {
+    padding: 16px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.patients-table td {
+    padding: 16px;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 15px;
+    color: #1e293b;
+}
+
+.patients-table tbody tr {
+    transition: background 0.2s;
+}
+
+.patients-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.patient-id-cell {
+    font-weight: 600;
+    color: #667eea;
+}
+
+.patient-name-cell {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.gender-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.doctor-cell {
+    color: #10b981;
+}
+
+.medical-history-cell {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: help;
+    color: #64748b;
+}
+
+.lab-tests-cell .has-tests {
+    color: #10b981;
+    font-weight: 600;
+}
+
+.lab-tests-cell .no-tests {
+    color: #cbd5e1;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-action {
+    padding: 8px;
+    background: none;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.2s;
+}
+
+.btn-action.view {
+    color: #667eea;
+}
+
+.btn-action.view:hover {
+    background: #ede9fe;
+}
+
+.btn-action.edit {
+    color: #10b981;
+}
+
+.btn-action.edit:hover {
+    background: #d1fae5;
+}
+
+.btn-action.lab-tests {
+    color: #f59e0b;
+}
+
+.btn-action.lab-tests:hover {
+    background: #fef3c7;
+}
+
+.btn-action.delete {
+    color: #ef4444;
+}
+
+.btn-action.delete:hover {
+    background: #fee2e2;
+}

@@ -1,0 +1,134 @@
+.lab-test-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.selected-tests-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-height: 32px;
+}
+
+.test-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #e0e7ff;
+    color: #4338ca;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.remove-tag-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: #6366f1;
+    cursor: pointer;
+    padding: 0;
+    font-size: 16px;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.remove-tag-btn:hover {
+    background: #c7d2fe;
+    color: #312e81;
+}
+
+.test-search-wrapper {
+    position: relative;
+}
+
+.test-search-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    background: white;
+    transition: border-color 0.2s;
+}
+
+.test-search-box:focus-within {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.test-search-box .search-icon {
+    color: #94a3b8;
+    font-size: 20px;
+}
+
+.test-search-box input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: transparent;
+}
+
+.test-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 4px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-height: 250px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.test-dropdown-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    cursor: default;
+}
+
+.test-option {
+    padding: 10px 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #1e293b;
+    transition: background 0.2s;
+}
+
+.test-option:hover {
+    background: #f8fafc;
+}
+
+.test-option.selected {
+    background: #f0f9ff;
+    color: #0284c7;
+    font-weight: 500;
+}
+
+.check-icon {
+    color: #0284c7;
+    font-size: 18px;
+}
+
+.no-results {
+    padding: 16px;
+    text-align: center;
+    color: #64748b;
+    font-size: 14px;
+}

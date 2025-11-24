@@ -1,0 +1,41 @@
+.upload-modal {
+    max-width: 500px;
+}
+
+.file-upload-box {
+    position: relative;
+    border: 2px dashed #e2e8f0;
+    border-radius: 8px;
+    padding: 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.file-upload-box:hover {
+    border-color: #4f46e5;
+    background: #f5f3ff;
+}
+
+.file-upload-box input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.upload-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: #64748b;
+}
+
+.upload-placeholder svg {
+    font-size: 32px;
+    color: #4f46e5;
+}
