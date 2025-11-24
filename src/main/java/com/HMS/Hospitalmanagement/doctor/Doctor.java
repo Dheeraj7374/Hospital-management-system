@@ -30,4 +30,5 @@ public class Doctor {
     private String bio; // Doctor's biography/description
     private Double consultationFee; // Consultation fee in currency
     private String status; // ACTIVE or INACTIVE
+    private String certificateUrl; // Path to degree certificate
 }

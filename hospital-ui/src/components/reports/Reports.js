@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { reportAPI } from '../../services/api';
-import { MdCloudUpload, MdCloudDownload, MdSearch, MdDescription } from 'react-icons/md';
+import { MdCloudUpload, MdCloudDownload, MdSearch, MdDescription, MdDelete } from 'react-icons/md';
 import UploadReportModal from './UploadReportModal';
 import './Reports.css';
 
@@ -45,6 +45,20 @@ function Reports() {
         } catch (error) {
             console.error('Error downloading report:', error);
             alert('Failed to download report');
+        }
+    };
+
+    const handleDelete = async (id) => {
+        if (!window.confirm('Are you sure you want to delete this report? This action cannot be undone.')) {
+            return;
+        }
+        try {
+            await reportAPI.delete(id);
+            alert('Report deleted successfully');
+            loadReports();
+        } catch (error) {
+            console.error('Error deleting report:', error);
+            alert('Failed to delete report');
         }
     };
 
@@ -110,6 +124,24 @@ function Reports() {
                                     >
                                         <MdCloudDownload /> Download
                                     </button>
+                                )}
+                                {role === 'ADMIN' && (
+                                    <div className="report-actions">
+                                        <button
+                                            className="btn-download"
+                                            onClick={() => handleDownload(report)}
+                                            title="Download"
+                                        >
+                                            <MdCloudDownload />
+                                        </button>
+                                        <button
+                                            className="btn-delete"
+                                            onClick={() => handleDelete(report.id)}
+                                            title="Delete"
+                                        >
+                                            <MdDelete />
+                                        </button>
+                                    </div>
                                 )}
                             </div>
                         ))

@@ -13,6 +13,7 @@ import PatientsManagement from './components/patients/PatientsManagement';
 import BillingManagement from './components/billing/BillingManagement';
 import Profile from './components/profile/Profile';
 import Reports from './components/reports/Reports';
+import Settings from './components/settings/Settings';
 import './App.css';
 
 function App() {
@@ -45,7 +46,11 @@ function App() {
       <div className="app-container">
         <Sidebar role={localStorage.getItem('role')} />
         <div className="main-content">
-          <TopBar onLogout={handleLogout} username="Admin User" role="ADMIN" />
+          <TopBar
+            onLogout={handleLogout}
+            username={localStorage.getItem('username') || 'User'}
+            role={localStorage.getItem('role') || 'GUEST'}
+          />
           <div className="content-area">
             <Routes>
               <Route path="/" element={<Navigate to="/dashboard" />} />
@@ -57,7 +62,7 @@ function App() {
               <Route path="/billing" element={<BillingManagement />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/reports" element={<Reports />} />
-              <Route path="/settings" element={<ComingSoon title="Settings" />} />
+              <Route path="/settings" element={<Settings />} />
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
             </Routes>
           </div>

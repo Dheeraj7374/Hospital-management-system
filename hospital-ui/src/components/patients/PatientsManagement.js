@@ -175,7 +175,7 @@ function PatientsManagement() {
             <div className="patients-stats">
                 <div className="stat-card">
                     <div className="stat-value">{stats.total}</div>
-                    <div className="stat-label">Total Patients</div>
+                    <div className="stat-label">Total Patients Treated</div>
                 </div>
                 <div className="stat-card male">
                     <div className="stat-value">{stats.male}</div>
@@ -184,10 +184,6 @@ function PatientsManagement() {
                 <div className="stat-card female">
                     <div className="stat-value">{stats.female}</div>
                     <div className="stat-label">Female</div>
-                </div>
-                <div className="stat-card assigned">
-                    <div className="stat-value">{stats.withDoctor}</div>
-                    <div className="stat-label">With Doctor</div>
                 </div>
             </div>
 

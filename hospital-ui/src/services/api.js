@@ -22,6 +22,8 @@ api.interceptors.request.use((config) => {
 export const authAPI = {
     login: (credentials) => api.post('/auth/login', credentials),
     register: (userData) => api.post('/auth/register', userData),
+    changePassword: (data) => api.post('/auth/change-password', data),
+    createAdmin: (data) => api.post('/auth/create-admin', data),
 };
 
 // Patient API
@@ -43,6 +45,9 @@ export const doctorAPI = {
     uploadPhoto: (id, formData) => api.post(`/doctors/${id}/photo`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
     }),
+    uploadCertificate: (id, formData) => api.post(`/doctors/${id}/certificate`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+    }),
 };
 
 // Appointment API
@@ -61,7 +66,6 @@ export const billAPI = {
     getById: (id) => api.get(`/bills/${id}`),
     create: (data) => api.post('/bills', data),
     update: (id, data) => api.put(`/bills/${id}`, data),
-    delete: (id) => api.delete(`/bills/${id}`)
 };
 
 // Report API
@@ -72,7 +76,8 @@ export const reportAPI = {
             'Content-Type': 'multipart/form-data'
         }
     }),
-    download: (id) => api.get(`/reports/download/${id}`, { responseType: 'blob' })
+    download: (id) => api.get(`/reports/download/${id}`, { responseType: 'blob' }),
+    delete: (id) => api.delete(`/reports/${id}`),
 };
 
 export default api;

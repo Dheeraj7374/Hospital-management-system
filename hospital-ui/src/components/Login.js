@@ -4,7 +4,6 @@ import './Login.css';
 
 function Login({ onLoginSuccess }) {
     const [isLogin, setIsLogin] = useState(true);
-    const [activeTab, setActiveTab] = useState('PATIENT'); // 'PATIENT' or 'ADMIN'
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -13,12 +12,6 @@ function Login({ onLoginSuccess }) {
     });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-
-    const handleTabChange = (role) => {
-        setActiveTab(role);
-        setFormData(prev => ({ ...prev, role: role }));
-        setError('');
-    };
 
     const handleChange = (e) => {
         setFormData({
@@ -72,26 +65,6 @@ function Login({ onLoginSuccess }) {
                     <p>{isLogin ? 'Welcome Back' : 'Create Account'}</p>
                 </div>
 
-                {/* Login Tabs */}
-                {isLogin && (
-                    <div className="login-tabs">
-                        <button
-                            className={`tab-btn ${activeTab === 'PATIENT' ? 'active' : ''}`}
-                            onClick={() => handleTabChange('PATIENT')}
-                            type="button"
-                        >
-                            Patient Login
-                        </button>
-                        <button
-                            className={`tab-btn ${activeTab === 'ADMIN' ? 'active' : ''}`}
-                            onClick={() => handleTabChange('ADMIN')}
-                            type="button"
-                        >
-                            Admin Login
-                        </button>
-                    </div>
-                )}
-
                 {error && (
                     <div className={`alert ${error.includes('successful') ? 'success' : 'error'}`}>
                         {error}
@@ -140,30 +113,12 @@ function Login({ onLoginSuccess }) {
                         />
                     </div>
 
-                    {/* Role selection hidden for login, shown for register */}
-                    {!isLogin && (
-                        <div className="form-group">
-                            <label htmlFor="role">Role</label>
-                            <select
-                                id="role"
-                                name="role"
-                                value={formData.role}
-                                onChange={handleChange}
-                                required
-                            >
-                                <option value="PATIENT">Patient</option>
-                                <option value="DOCTOR">Doctor</option>
-                                <option value="ADMIN">Administrator</option>
-                            </select>
-                        </div>
-                    )}
-
                     <button
                         type="submit"
                         className="btn-primary"
                         disabled={loading}
                     >
-                        {loading ? 'Please wait...' : (isLogin ? `Login as ${activeTab === 'PATIENT' ? 'Patient' : 'Admin'}` : 'Register')}
+                        {loading ? 'Please wait...' : (isLogin ? 'Login' : 'Register')}
                     </button>
                 </form>
 

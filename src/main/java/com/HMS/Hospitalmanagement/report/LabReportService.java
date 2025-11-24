@@ -76,4 +76,14 @@ public class LabReportService {
     public LabReport getReportById(Long id) {
         return labReportRepository.findById(id).orElseThrow(() -> new RuntimeException("Report not found"));
     }
+
+    public void deleteReport(Long id) {
+        LabReport report = getReportById(id);
+        try {
+            Files.deleteIfExists(root.resolve(report.getFileName()));
+            labReportRepository.deleteById(id);
+        } catch (IOException e) {
+            throw new RuntimeException("Could not delete the file. Error: " + e.getMessage());
+        }
+    }
 }

@@ -19,6 +19,9 @@ function EditDoctorModal({ doctor, onClose, onSuccess }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
+    const [certificateFile, setCertificateFile] = useState(null);
+    const [photoFile, setPhotoFile] = useState(null);
+
     const specializations = [
         'Cardiology', 'Neurology', 'Orthopedics', 'Pediatrics',
         'Dermatology', 'General Medicine', 'Surgery', 'ENT',
@@ -64,6 +67,19 @@ function EditDoctorModal({ doctor, onClose, onSuccess }) {
             };
 
             await doctorAPI.update(doctor.id, doctorData);
+
+            if (certificateFile) {
+                const formData = new FormData();
+                formData.append('file', certificateFile);
+                await doctorAPI.uploadCertificate(doctor.id, formData);
+            }
+
+            if (photoFile) {
+                const formData = new FormData();
+                formData.append('file', photoFile);
+                await doctorAPI.uploadPhoto(doctor.id, formData);
+            }
+
             alert('Doctor updated successfully!');
             onSuccess();
         } catch (err) {
@@ -142,6 +158,7 @@ function EditDoctorModal({ doctor, onClose, onSuccess }) {
                                 type="number"
                                 name="experience"
                                 value={formData.experience}
+                                onChange={handleChange}
                                 step="0.01"
                             />
                         </div>
@@ -158,13 +175,21 @@ function EditDoctorModal({ doctor, onClose, onSuccess }) {
                     </div>
 
                     <div className="form-group">
-                        <label>Photo URL</label>
+                        <label>Profile Photo</label>
                         <input
-                            type="url"
-                            name="imageUrl"
-                            value={formData.imageUrl}
-                            onChange={handleChange}
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => setPhotoFile(e.target.files[0])}
                         />
+                        {doctor.imageUrl && (
+                            <div className="current-file">
+                                <img
+                                    src={doctor.imageUrl.startsWith('http') ? doctor.imageUrl : `http://localhost:8081${doctor.imageUrl}`}
+                                    alt="Current Profile"
+                                    style={{ width: '50px', height: '50px', objectFit: 'cover', marginTop: '5px', borderRadius: '50%' }}
+                                />
+                            </div>
+                        )}
                     </div>
 
                     <div className="form-group">
@@ -187,6 +212,22 @@ function EditDoctorModal({ doctor, onClose, onSuccess }) {
                             <option value="ACTIVE">Active</option>
                             <option value="INACTIVE">Inactive</option>
                         </select>
+                    </div>
+
+                    <div className="form-group">
+                        <label>Degree Certificate</label>
+                        <input
+                            type="file"
+                            accept=".pdf,.jpg,.jpeg,.png"
+                            onChange={(e) => setCertificateFile(e.target.files[0])}
+                        />
+                        {doctor.certificateUrl && (
+                            <div className="current-file">
+                                <a href={`http://localhost:8081${doctor.certificateUrl}`} target="_blank" rel="noopener noreferrer">
+                                    View Current Certificate
+                                </a>
+                            </div>
+                        )}
                     </div>
 
                     <div className="modal-footer">

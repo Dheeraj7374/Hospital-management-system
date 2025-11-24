@@ -53,6 +53,16 @@ public class DoctorController {
         return ResponseEntity.ok(updated);
     }
 
+    @PostMapping("/{id}/certificate")
+    public ResponseEntity<Doctor> uploadCertificate(@PathVariable Long id,
+            @RequestParam("file") org.springframework.web.multipart.MultipartFile file) {
+        Doctor updated = doctorService.uploadCertificate(id, file);
+        if (updated == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(updated);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteDoctor(@PathVariable Long id) {
         boolean deleted = doctorService.deleteDoctor(id);

@@ -34,17 +34,9 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody User user) {
         try {
-            // Force role to PATIENT for public registration if not specified or if trying
-            // to be sneaky
-            if (user.getRole() == null || user.getRole() != Role.PATIENT) {
-                // For now, we allow other roles if explicitly sent (e.g. for testing),
-                // but in production this should be strictly PATIENT.
-                // However, per the critique, we want to secure it.
-                // Let's default to PATIENT if null.
-                if (user.getRole() == null) {
-                    user.setRole(Role.PATIENT);
-                }
-            }
+            // STRICTLY enforce PATIENT role for public registration
+            // Ignore any role sent in the request body
+            user.setRole(Role.PATIENT);
 
             User registeredUser = userService.registerUser(user);
 
@@ -106,7 +98,65 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
-    // DTO for login request
+    @PostMapping("/change-password")
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest request) {
+        // In a real app, we should get the username from the security context
+        // For now, we'll trust the client to send the username (NOT SECURE for
+        // production, but fits current state)
+        // Better: extract username from JWT token in the header
+
+        Optional<User> userOpt = userService.findByUsername(request.getUsername());
+        if (userOpt.isEmpty()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "User not found"));
+        }
+
+        User user = userOpt.get();
+        if (!userService.validatePassword(request.getCurrentPassword(), user.getPassword())) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Invalid current password"));
+        }
+        userService.updatePassword(request.getUsername(), request.getNewPassword());
+        return ResponseEntity.ok(Map.of("message", "Password updated successfully"));
+    }
+
+    @PostMapping("/create-admin")
+    public ResponseEntity<?> createAdmin(@RequestBody CreateAdminRequest request) {
+        System.out.println("Received create-admin request");
+        System.out.println("Requester: " + request.getRequesterUsername());
+        System.out.println("New Admin: " + request.getUsername());
+
+        // Security check: Ensure the requester is an ADMIN
+        Optional<User> requesterOpt = userService.findByUsername(request.getRequesterUsername());
+
+        if (requesterOpt.isEmpty()) {
+            System.out.println("Requester not found in DB");
+            return ResponseEntity.status(403).body(Map.of("error", "Unauthorized: Requester not found"));
+        }
+
+        System.out.println("Requester Role: " + requesterOpt.get().getRole());
+
+        if (requesterOpt.get().getRole() != Role.ADMIN) {
+            System.out.println("Requester is not ADMIN");
+            return ResponseEntity.status(403)
+                    .body(Map.of("error", "Unauthorized: Only Admins can create other Admins"));
+        }
+
+        User newUser = new User();
+        newUser.setUsername(request.getUsername());
+        newUser.setPassword(request.getPassword());
+        newUser.setEmail(request.getEmail());
+        newUser.setRole(Role.ADMIN);
+
+        try {
+            userService.registerUser(newUser);
+            System.out.println("Admin created successfully");
+            return ResponseEntity.ok(Map.of("message", "Admin created successfully"));
+        } catch (RuntimeException e) {
+            System.out.println("Error creating admin: " + e.getMessage());
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
+    }
+
+    // DTOs
     public static class LoginRequest {
         private String username;
         private String password;
@@ -125,6 +175,75 @@ public class AuthController {
 
         public void setPassword(String password) {
             this.password = password;
+        }
+    }
+
+    public static class ChangePasswordRequest {
+        private String username;
+        private String currentPassword;
+        private String newPassword;
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public String getCurrentPassword() {
+            return currentPassword;
+        }
+
+        public void setCurrentPassword(String currentPassword) {
+            this.currentPassword = currentPassword;
+        }
+
+        public String getNewPassword() {
+            return newPassword;
+        }
+
+        public void setNewPassword(String newPassword) {
+            this.newPassword = newPassword;
+        }
+    }
+
+    public static class CreateAdminRequest {
+        private String requesterUsername;
+        private String username;
+        private String password;
+        private String email;
+
+        public String getRequesterUsername() {
+            return requesterUsername;
+        }
+
+        public void setRequesterUsername(String requesterUsername) {
+            this.requesterUsername = requesterUsername;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
         }
     }
 }

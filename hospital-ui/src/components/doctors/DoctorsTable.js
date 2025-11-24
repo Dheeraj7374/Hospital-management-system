@@ -42,7 +42,10 @@ function DoctorsTable({ doctors, onEdit, onDelete, onView }) {
                             <td>
                                 <div className="doctor-photo-cell">
                                     {doctor.imageUrl ? (
-                                        <img src={doctor.imageUrl} alt={doctor.name} />
+                                        <img
+                                            src={doctor.imageUrl.startsWith('http') ? doctor.imageUrl : `http://localhost:8081${doctor.imageUrl}`}
+                                            alt={doctor.name}
+                                        />
                                     ) : (
                                         <div className="doctor-avatar-small">{getInitials(doctor.name)}</div>
                                     )}

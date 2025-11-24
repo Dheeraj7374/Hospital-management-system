@@ -71,6 +71,33 @@ public class DoctorService {
         }).orElse(null);
     }
 
+    public Doctor uploadCertificate(Long id, org.springframework.web.multipart.MultipartFile file) {
+        return doctorRepository.findById(id).map(doctor -> {
+            try {
+                // Ensure directory exists
+                String uploadDir = "uploads/certificates/";
+                java.io.File directory = new java.io.File(uploadDir);
+                if (!directory.exists()) {
+                    directory.mkdirs();
+                }
+
+                // Generate unique filename
+                String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+                java.nio.file.Path filePath = java.nio.file.Paths.get(uploadDir + fileName);
+
+                // Save file
+                java.nio.file.Files.copy(file.getInputStream(), filePath,
+                        java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+
+                // Update doctor entity
+                doctor.setCertificateUrl("/uploads/certificates/" + fileName);
+                return doctorRepository.save(doctor);
+            } catch (java.io.IOException e) {
+                throw new RuntimeException("Failed to store file " + file.getOriginalFilename(), e);
+            }
+        }).orElse(null);
+    }
+
     public boolean deleteDoctor(Long id) {
         if (doctorRepository.existsById(id)) {
             doctorRepository.deleteById(id);
