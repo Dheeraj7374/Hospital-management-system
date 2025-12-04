@@ -129,13 +129,13 @@ public class AuthController {
 
         if (requesterOpt.isEmpty()) {
             System.out.println("Requester not found in DB");
+
             return ResponseEntity.status(403).body(Map.of("error", "Unauthorized: Requester not found"));
         }
 
-        System.out.println("Requester Role: " + requesterOpt.get().getRole());
-
         if (requesterOpt.get().getRole() != Role.ADMIN) {
             System.out.println("Requester is not ADMIN");
+
             return ResponseEntity.status(403)
                     .body(Map.of("error", "Unauthorized: Only Admins can create other Admins"));
         }
@@ -149,9 +149,11 @@ public class AuthController {
         try {
             userService.registerUser(newUser);
             System.out.println("Admin created successfully");
+
             return ResponseEntity.ok(Map.of("message", "Admin created successfully"));
         } catch (RuntimeException e) {
             System.out.println("Error creating admin: " + e.getMessage());
+
             return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
         }
     }

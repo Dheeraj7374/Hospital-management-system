@@ -33,6 +33,7 @@ public class DataInitializer implements CommandLineRunner {
 
             userRepository.save(admin);
             System.out.println("Default Admin account created: username=admin, password=admin123");
+
         }
     }
 }

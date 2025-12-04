@@ -46,6 +46,7 @@ function BookingModal({ doctor, onClose, onSuccess }) {
             if (!patient) {
                 // Auto-create patient profile if not found
                 console.log('Patient profile not found. Creating new profile...');
+
                 try {
                     const newPatientRes = await import('../../services/api').then(m => m.patientAPI.create({
                         name: username,
@@ -56,6 +57,7 @@ function BookingModal({ doctor, onClose, onSuccess }) {
                     }));
                     patient = newPatientRes.data;
                     console.log('New patient profile created:', patient);
+
                 } catch (createError) {
                     console.error('Failed to create patient profile:', createError);
                     throw new Error('Patient profile not found and failed to auto-create. Please contact admin.');
