@@ -57,7 +57,7 @@ function Register() {
             <div className="login-card">
                 <div className="login-header">
                     <h1>Create Account</h1>
-                    <p>Join City Hospital Management System</p>
+                    <p>Join Hospital Management System</p>
                 </div>
 
                 {error && <div className="error-message">{error}</div>}

@@ -20,23 +20,6 @@
     border-bottom: 1px solid var(--border-color);
 }
 
-.logo-icon {
-    font-size: 28px;
-    color: var(--primary-color);
-}
-
-.sidebar-logo h2 {
-    color: var(--text-primary);
-    font-size: 20px;
-    font-weight: 600;
-    margin: 0;
-}
-
-.sidebar-nav {
-    flex: 1;
-    padding: 16px 0;
-    overflow-y: auto;
-}
 
 .nav-item {
     display: flex;

@@ -30,7 +30,7 @@ function Sidebar({ role }) {
         <div className="sidebar">
             <div className="sidebar-logo">
                 <div className="logo-icon">🏥</div>
-                <h2>DocuVerse</h2>
+                <h2>Hospital Management System</h2>
             </div>
 
             <nav className="sidebar-nav">
