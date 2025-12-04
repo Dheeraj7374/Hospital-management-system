@@ -105,12 +105,7 @@ function DoctorDetailsModal({ doctor, onClose, onEdit, onDelete }) {
                                     <span className="info-value">{doctor.qualification || 'Not specified'}</span>
                                 </div>
                             </div>
-                            <div className="info-item">
-                                <div>
-                                    <span className="info-label">Consultation Fee</span>
-                                    <span className="info-value">{doctor.consultationFee ? `€${doctor.consultationFee}` : 'Not specified'}</span>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
 

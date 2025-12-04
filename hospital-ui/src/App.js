@@ -19,6 +19,11 @@ import './App.css';
 function App() {
   const isAuthenticated = !!localStorage.getItem('token');
 
+  React.useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  }, []);
+
   const handleLogout = () => {
     localStorage.removeItem('token');
     // Force reload to clear state and redirect to login

@@ -67,6 +67,15 @@ function Settings() {
         }
     };
 
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+
+    const toggleTheme = () => {
+        const newTheme = theme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+        localStorage.setItem('theme', newTheme);
+        document.documentElement.setAttribute('data-theme', newTheme);
+    };
+
     return (
         <div className="settings-container">
             <h1>Settings</h1>
@@ -77,6 +86,12 @@ function Settings() {
                     onClick={() => setActiveTab('password')}
                 >
                     Change Password
+                </button>
+                <button
+                    className={`tab-btn ${activeTab === 'appearance' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('appearance')}
+                >
+                    Appearance
                 </button>
                 {role === 'ADMIN' && (
                     <button
@@ -128,6 +143,26 @@ function Settings() {
                             </div>
                             <button type="submit" className="btn-primary">Update Password</button>
                         </form>
+                    </div>
+                )}
+
+                {activeTab === 'appearance' && (
+                    <div className="settings-card">
+                        <h2>Appearance</h2>
+                        <div className="theme-toggle-section">
+                            <div className="theme-info">
+                                <h3>Night Mode</h3>
+                                <p>Switch between light and dark themes for a better viewing experience.</p>
+                            </div>
+                            <label className="switch">
+                                <input
+                                    type="checkbox"
+                                    checked={theme === 'dark'}
+                                    onChange={toggleTheme}
+                                />
+                                <span className="slider round"></span>
+                            </label>
+                        </div>
                     </div>
                 )}
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { MdClose, MdEmail, MdPhone, MdWork, MdAttachMoney } from 'react-icons/md';
+import { MdClose, MdEmail, MdPhone, MdWork } from 'react-icons/md';
 import './DoctorProfileModal.css';
 
 function DoctorProfileModal({ doctor, onClose }) {
@@ -42,13 +42,7 @@ function DoctorProfileModal({ doctor, onClose }) {
                                 <span>{doctor.experience} Years</span>
                             </div>
                         </div>
-                        <div className="detail-card">
-                            <MdAttachMoney className="detail-icon" />
-                            <div className="detail-info">
-                                <label>Consultation Fee</label>
-                                <span>${doctor.consultationFee || 'N/A'}</span>
-                            </div>
-                        </div>
+
                         <div className="detail-card">
                             <MdEmail className="detail-icon" />
                             <div className="detail-info">

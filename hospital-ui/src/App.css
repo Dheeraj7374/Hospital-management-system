@@ -10,12 +10,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #f8fafc;
+  background: var(--bg-primary);
 }
 
 .app-container {
   display: flex;
   min-height: 100vh;
+  background: var(--bg-primary);
 }
 
 .main-content {
@@ -27,6 +28,7 @@ body {
 
 .page-content {
   flex: 1;
-  background: #f8fafc;
+  background: var(--bg-primary);
   min-height: calc(100vh - 70px);
+  transition: background 0.3s;
 }
