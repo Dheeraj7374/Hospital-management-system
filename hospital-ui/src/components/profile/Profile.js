@@ -1,26 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import { MdPerson, MdEmail, MdPhone, MdWork, MdEdit, MdSave, MdCameraAlt } from 'react-icons/md';
+import { authAPI } from '../../services/api';
 import './Profile.css';
 
 function Profile() {
-    const [user, setUser] = useState({
-        name: 'Admin User',
-        email: 'admin@hospital.com',
-        role: 'ADMIN',
-        phone: '+1 234 567 8900',
-        bio: 'Hospital Administrator with 10+ years of experience in healthcare management.',
-        joinDate: '2023-01-15',
-        imageUrl: ''
-    });
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     const [isEditing, setIsEditing] = useState(false);
-    const [editedUser, setEditedUser] = useState({ ...user });
+    const [editedUser, setEditedUser] = useState({});
 
     useEffect(() => {
-        
-        
-        
+        const fetchProfile = async () => {
+            try {
+                const username = localStorage.getItem('username');
+                if (!username) {
+                    setError('No user logged in');
+                    setLoading(false);
+                    return;
+                }
+                const response = await authAPI.getProfile(username);
+                setUser(response.data);
+                setEditedUser(response.data);
+            } catch (err) {
+                console.error('Error fetching profile:', err);
+                setError('Failed to load profile');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProfile();
     }, []);
+
+    if (loading) return <div className="profile-container">Loading...</div>;
+    if (error) return <div className="profile-container">{error}</div>;
+    if (!user) return <div className="profile-container">User not found</div>;
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -30,7 +46,7 @@ function Profile() {
     const handleSave = () => {
         setUser(editedUser);
         setIsEditing(false);
-        
+
         alert('Profile updated successfully!');
     };
 
@@ -149,9 +165,7 @@ function Profile() {
                         <p className="bio-text">{user.bio}</p>
                     )}
 
-                    <div className="join-date">
-                        <span>Member since {new Date(user.joinDate).toLocaleDateString()}</span>
-                    </div>
+
                 </div>
             </div>
         </div>

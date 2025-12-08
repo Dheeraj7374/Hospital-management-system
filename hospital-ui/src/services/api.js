@@ -24,6 +24,7 @@ export const authAPI = {
     register: (userData) => api.post('/auth/register', userData),
     changePassword: (data) => api.post('/auth/change-password', data),
     createAdmin: (data) => api.post('/auth/create-admin', data),
+    getProfile: (username) => api.get(`/auth/profile/${username}`),
 };
 
 
@@ -57,7 +58,7 @@ export const appointmentAPI = {
     create: (data) => api.post('/appointments', data),
     update: (id, data) => api.put(`/appointments/${id}`, data),
     delete: (id) => api.delete(`/appointments/${id}`),
-    getByDoctorId: (doctorId) => api.get(`/appointments?doctorId=${doctorId}`), 
+    getByDoctorId: (doctorId) => api.get(`/appointments?doctorId=${doctorId}`),
 };
 
 

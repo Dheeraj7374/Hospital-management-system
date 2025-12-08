@@ -34,18 +34,16 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody User user) {
         try {
-            
-            
+
             user.setRole(Role.PATIENT);
 
             User registeredUser = userService.registerUser(user);
 
-            
             if (registeredUser.getRole() == Role.PATIENT) {
                 com.HMS.Hospitalmanagement.patient.Patient newPatient = new com.HMS.Hospitalmanagement.patient.Patient();
-                newPatient.setName(registeredUser.getUsername()); 
-                newPatient.setAge(0); 
-                newPatient.setGender("Other"); 
+                newPatient.setName(registeredUser.getUsername());
+                newPatient.setAge(0);
+                newPatient.setGender("Other");
                 newPatient.setContactNumber("N/A");
                 newPatient.setMedicalHistory("New Patient");
                 patientService.createPatient(newPatient);
@@ -82,7 +80,6 @@ public class AuthController {
         response.put("username", user.getUsername());
         response.put("role", user.getRole());
 
-        
         if (user.getRole() == Role.DOCTOR) {
             com.HMS.Hospitalmanagement.doctor.Doctor doctor = doctorRepository.findByName(user.getUsername());
             if (doctor != null) {
@@ -100,10 +97,6 @@ public class AuthController {
 
     @PostMapping("/change-password")
     public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest request) {
-        
-        
-        
-        
 
         Optional<User> userOpt = userService.findByUsername(request.getUsername());
         if (userOpt.isEmpty()) {
@@ -124,7 +117,6 @@ public class AuthController {
         System.out.println("Requester: " + request.getRequesterUsername());
         System.out.println("New Admin: " + request.getUsername());
 
-        
         Optional<User> requesterOpt = userService.findByUsername(request.getRequesterUsername());
 
         if (requesterOpt.isEmpty()) {
@@ -158,7 +150,6 @@ public class AuthController {
         }
     }
 
-    
     public static class LoginRequest {
         private String username;
         private String password;
@@ -247,5 +238,47 @@ public class AuthController {
         public void setEmail(String email) {
             this.email = email;
         }
+    }
+
+    @GetMapping("/profile/{username}")
+    public ResponseEntity<?> getUserProfile(@PathVariable String username) {
+        Optional<User> userOpt = userService.findByUsername(username);
+        if (userOpt.isEmpty()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "User not found"));
+        }
+
+        User user = userOpt.get();
+        Map<String, Object> response = new HashMap<>();
+        response.put("username", user.getUsername());
+        response.put("email", user.getEmail());
+        response.put("role", user.getRole());
+
+        if (user.getRole() == Role.DOCTOR) {
+            com.HMS.Hospitalmanagement.doctor.Doctor doctor = doctorRepository.findByName(user.getUsername());
+            if (doctor != null) {
+                response.put("name", doctor.getName());
+                response.put("specialization", doctor.getSpecialization());
+                response.put("contactNumber", doctor.getContactNumber());
+                response.put("experience", doctor.getExperience());
+                response.put("qualification", doctor.getQualification());
+                response.put("bio", doctor.getBio());
+                response.put("imageUrl", doctor.getImageUrl());
+                response.put("consultationFee", doctor.getConsultationFee());
+            }
+        } else if (user.getRole() == Role.PATIENT) {
+            com.HMS.Hospitalmanagement.patient.Patient patient = patientRepository.findByName(user.getUsername());
+            if (patient != null) {
+                response.put("name", patient.getName());
+                response.put("contactNumber", patient.getContactNumber());
+                response.put("age", patient.getAge());
+                response.put("gender", patient.getGender());
+                response.put("medicalHistory", patient.getMedicalHistory());
+            }
+        } else {
+            // Admin
+            response.put("name", user.getUsername());
+        }
+
+        return ResponseEntity.ok(response);
     }
 }

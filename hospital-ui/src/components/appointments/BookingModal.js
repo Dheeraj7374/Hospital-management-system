@@ -38,41 +38,20 @@ function BookingModal({ doctor, onClose, onSuccess }) {
         try {
             const username = localStorage.getItem('username');
 
-            
-            
+
+
             const patientsRes = await import('../../services/api').then(m => m.patientAPI.getAll());
             let patient = patientsRes.data.find(p => p.name.toLowerCase() === username?.toLowerCase());
 
-            if (!patient) {
-                
-                console.log('Patient profile not found. Creating new profile...');
 
-                try {
-                    const newPatientRes = await import('../../services/api').then(m => m.patientAPI.create({
-                        name: username,
-                        age: 0, 
-                        gender: 'Other',
-                        contactNumber: 'N/A',
-                        medicalHistory: 'New Patient'
-                    }));
-                    patient = newPatientRes.data;
-                    console.log('New patient profile created:', patient);
 
-                } catch (createError) {
-                    console.error('Failed to create patient profile:', createError);
-                    throw new Error('Patient profile not found and failed to auto-create. Please contact admin.');
-                }
-            }
-
-            
-            
 
             const appointmentDateTime = new Date(selectedDate);
             const [hours, minutes] = selectedTime.split(':');
             appointmentDateTime.setHours(parseInt(hours), parseInt(minutes), 0);
             const isoDateTime = appointmentDateTime.toISOString();
 
-            
+
             const appointmentData = {
                 patient: { id: patient.id },
                 doctor: { id: doctor.id },
@@ -86,7 +65,7 @@ function BookingModal({ doctor, onClose, onSuccess }) {
 
             alert('Appointment booked successfully!');
             onClose();
-            onSuccess(); 
+            onSuccess();
 
             setTimeout(() => {
                 navigate('/appointments');

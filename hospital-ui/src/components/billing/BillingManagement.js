@@ -16,11 +16,11 @@ function BillingManagement() {
     const [filterDate, setFilterDate] = useState('all');
     const [loading, setLoading] = useState(true);
 
-    
+
     const userRole = localStorage.getItem('role');
     const username = localStorage.getItem('username');
 
-    
+
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showInvoiceModal, setShowInvoiceModal] = useState(false);
@@ -43,11 +43,11 @@ function BillingManagement() {
 
             let allBills = billsRes.data;
 
-            
+
             if (userRole === 'PATIENT') {
-                
-                
-                
+
+
+
                 allBills = allBills.filter(bill =>
                     bill.appointment?.patient?.name?.toLowerCase().includes(username.toLowerCase())
                 );
@@ -65,7 +65,7 @@ function BillingManagement() {
     const filterBills = () => {
         let filtered = [...bills];
 
-        
+
         if (searchTerm) {
             const term = searchTerm.toLowerCase();
             filtered = filtered.filter(bill =>
@@ -75,12 +75,12 @@ function BillingManagement() {
             );
         }
 
-        
+
         if (filterStatus !== 'all') {
             filtered = filtered.filter(bill => bill.paymentStatus === filterStatus);
         }
 
-        
+
         if (filterDate !== 'all') {
             const now = new Date();
             const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -94,7 +94,7 @@ function BillingManagement() {
             });
         }
 
-        
+
         filtered.sort((a, b) => new Date(b.billDate) - new Date(a.billDate));
 
         setFilteredBills(filtered);
@@ -152,7 +152,7 @@ function BillingManagement() {
 
     return (
         <div className="billing-container">
-            {}
+            { }
             <div className="billing-header">
                 <div>
                     <h1>{userRole === 'PATIENT' ? 'My Bills' : 'Billing Management'}</h1>
@@ -165,7 +165,7 @@ function BillingManagement() {
                 )}
             </div>
 
-            {}
+            { }
             <div className="billing-stats">
                 <div className="stat-card revenue">
                     <div className="stat-icon"><MdAttachMoney /></div>
@@ -190,7 +190,7 @@ function BillingManagement() {
                 </div>
             </div>
 
-            {}
+            { }
             <div className="billing-filters">
                 <div className="search-box">
                     <MdSearch />
@@ -215,13 +215,14 @@ function BillingManagement() {
                 </select>
             </div>
 
-            {}
+            { }
             {filteredBills.length > 0 ? (
                 <BillsTable
                     bills={filteredBills}
                     onEdit={userRole === 'PATIENT' ? null : handleEditBill}
                     onDelete={userRole === 'PATIENT' ? null : handleDeleteBill}
                     onViewInvoice={handleViewInvoice}
+                    userRole={userRole}
                 />
             ) : (
                 <div className="no-bills">
@@ -229,7 +230,7 @@ function BillingManagement() {
                 </div>
             )}
 
-            {}
+            { }
             {showCreateModal && (
                 <CreateBillModal
                     appointments={appointments}

@@ -2,7 +2,7 @@ import React from 'react';
 import { MdEdit, MdDelete, MdDescription, MdCheckCircle } from 'react-icons/md';
 import './BillsTable.css';
 
-function BillsTable({ bills, onEdit, onDelete, onViewInvoice }) {
+function BillsTable({ bills, onEdit, onDelete, onViewInvoice, userRole }) {
     const formatDate = (dateString) => {
         return new Date(dateString).toLocaleDateString() + ' ' +
             new Date(dateString).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -46,20 +46,24 @@ function BillsTable({ bills, onEdit, onDelete, onViewInvoice }) {
                                     >
                                         <MdDescription />
                                     </button>
-                                    <button
-                                        onClick={() => onEdit(bill)}
-                                        className="btn-action edit"
-                                        title="Edit"
-                                    >
-                                        <MdEdit />
-                                    </button>
-                                    <button
-                                        onClick={() => onDelete(bill.id)}
-                                        className="btn-action delete"
-                                        title="Delete"
-                                    >
-                                        <MdDelete />
-                                    </button>
+                                    {userRole !== 'PATIENT' && (
+                                        <>
+                                            <button
+                                                onClick={() => onEdit(bill)}
+                                                className="btn-action edit"
+                                                title="Edit"
+                                            >
+                                                <MdEdit />
+                                            </button>
+                                            <button
+                                                onClick={() => onDelete(bill.id)}
+                                                className="btn-action delete"
+                                                title="Delete"
+                                            >
+                                                <MdDelete />
+                                            </button>
+                                        </>
+                                    )}
                                 </div>
                             </td>
                         </tr>
