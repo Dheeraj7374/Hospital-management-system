@@ -19,15 +19,15 @@ function DoctorDashboard() {
 
     const loadAppointments = async () => {
         try {
-            // Since backend might not have a direct filter param yet, we'll fetch all and filter client side
-            // Ideally backend should support /appointments/doctor/{id}
+            
+            
             const res = await appointmentAPI.getAll();
             const myAppointments = res.data.filter(apt =>
                 apt.doctor?.id === parseInt(doctorId) &&
                 apt.status !== 'CANCELLED'
             );
 
-            // Filter for today
+            
             const today = new Date().toISOString().split('T')[0];
             const todaysAppointments = myAppointments.filter(apt =>
                 apt.appointmentDate.startsWith(today)
@@ -42,9 +42,9 @@ function DoctorDashboard() {
     };
 
     const handleAssignLabTest = (patientId) => {
-        // Placeholder for lab test assignment logic
+        
         alert(`Assigning lab test for patient ID: ${patientId}`);
-        // In a real app, this would open a modal to select tests
+        
     };
 
     if (!doctorId) {

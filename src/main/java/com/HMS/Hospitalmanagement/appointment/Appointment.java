@@ -33,7 +33,7 @@ public class Appointment {
     @Enumerated(EnumType.STRING)
     private AppointmentStatus status;
 
-    private String labTestsRequired; // Comma-separated tests added by doctor
+    private String labTestsRequired;
 
     public enum AppointmentStatus {
         SCHEDULED, COMPLETED, CANCELLED

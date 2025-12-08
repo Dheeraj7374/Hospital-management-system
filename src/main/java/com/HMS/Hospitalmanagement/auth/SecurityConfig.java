@@ -29,8 +29,8 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**").permitAll() // Allow registration and login
-                        .anyRequest().permitAll() // Temporarily allow all for testing
+                        .requestMatchers("/auth/**").permitAll() 
+                        .anyRequest().permitAll() 
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS));

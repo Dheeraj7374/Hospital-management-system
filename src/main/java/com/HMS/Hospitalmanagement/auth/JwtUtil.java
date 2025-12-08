@@ -15,7 +15,7 @@ import java.util.Map;
 public class JwtUtil {
 
     private static final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-    private static final long EXPIRATION_TIME = 86400000; // 24 hours
+    private static final long EXPIRATION_TIME = 86400000; 
 
     public String generateToken(String username, String role) {
         Map<String, Object> claims = new HashMap<>();

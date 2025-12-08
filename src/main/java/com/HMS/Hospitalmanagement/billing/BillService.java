@@ -22,20 +22,20 @@ public class BillService {
     }
 
     public Bill createBill(Bill bill) {
-        // Validate appointment exists
+        
         if (bill.getAppointment() != null && bill.getAppointment().getId() != null) {
             Appointment appointment = appointmentRepository.findById(bill.getAppointment().getId()).orElse(null);
             bill.setAppointment(appointment);
         }
-        // Set default payment status if not provided
+        
         if (bill.getPaymentStatus() == null) {
             bill.setPaymentStatus(Bill.PaymentStatus.PENDING);
         }
-        // Set bill date if not provided
+        
         if (bill.getBillDate() == null) {
             bill.setBillDate(LocalDateTime.now());
         }
-        // Calculate total amount
+        
         bill.calculateTotal();
         return billRepository.save(bill);
     }
@@ -63,7 +63,7 @@ public class BillService {
             if (billDetails.getPaymentStatus() != null) {
                 bill.setPaymentStatus(billDetails.getPaymentStatus());
             }
-            // Recalculate total
+            
             bill.calculateTotal();
             return billRepository.save(bill);
         }).orElse(null);

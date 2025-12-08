@@ -9,7 +9,7 @@ const api = axios.create({
     },
 });
 
-// Add token to requests if available
+
 api.interceptors.request.use((config) => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -18,7 +18,7 @@ api.interceptors.request.use((config) => {
     return config;
 });
 
-// Auth API
+
 export const authAPI = {
     login: (credentials) => api.post('/auth/login', credentials),
     register: (userData) => api.post('/auth/register', userData),
@@ -26,7 +26,7 @@ export const authAPI = {
     createAdmin: (data) => api.post('/auth/create-admin', data),
 };
 
-// Patient API
+
 export const patientAPI = {
     getAll: () => api.get('/patients'),
     getById: (id) => api.get(`/patients/${id}`),
@@ -35,7 +35,7 @@ export const patientAPI = {
     delete: (id) => api.delete(`/patients/${id}`),
 };
 
-// Doctor API
+
 export const doctorAPI = {
     getAll: () => api.get('/doctors'),
     getById: (id) => api.get(`/doctors/${id}`),
@@ -50,17 +50,17 @@ export const doctorAPI = {
     }),
 };
 
-// Appointment API
+
 export const appointmentAPI = {
     getAll: (params) => api.get('/appointments', { params }),
     getById: (id) => api.get(`/appointments/${id}`),
     create: (data) => api.post('/appointments', data),
     update: (id, data) => api.put(`/appointments/${id}`, data),
     delete: (id) => api.delete(`/appointments/${id}`),
-    getByDoctorId: (doctorId) => api.get(`/appointments?doctorId=${doctorId}`), // Assuming backend supports this or we filter client side
+    getByDoctorId: (doctorId) => api.get(`/appointments?doctorId=${doctorId}`), 
 };
 
-// Bill API
+
 export const billAPI = {
     getAll: () => api.get('/bills'),
     getById: (id) => api.get(`/bills/${id}`),
@@ -68,7 +68,7 @@ export const billAPI = {
     update: (id, data) => api.put(`/bills/${id}`, data),
 };
 
-// Report API
+
 export const reportAPI = {
     getAll: (params) => api.get('/reports', { params }),
     upload: (formData) => api.post('/reports/upload', formData, {

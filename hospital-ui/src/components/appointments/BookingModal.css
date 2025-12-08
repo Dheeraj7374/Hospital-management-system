@@ -106,7 +106,7 @@
     font-size: 15px;
 }
 
-/* Center the datepicker */
+
 .form-section .react-datepicker-wrapper {
     display: flex;
     justify-content: center;
@@ -205,7 +205,7 @@
     cursor: not-allowed;
 }
 
-/* DatePicker custom styles */
+
 .react-datepicker {
     border: none !important;
     box-shadow: none !important;

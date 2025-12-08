@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { authAPI } from '../services/api';
-import './Login.css'; // Reuse Login styles
+import './Login.css';
 
 function Register() {
     const [formData, setFormData] = useState({
@@ -9,7 +9,7 @@ function Register() {
         email: '',
         password: '',
         confirmPassword: '',
-        role: 'PATIENT' // Default role
+        role: 'PATIENT'
     });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -34,7 +34,7 @@ function Register() {
         setLoading(true);
 
         try {
-            // Register API call
+
             await authAPI.register({
                 name: formData.name,
                 email: formData.email,
@@ -57,7 +57,7 @@ function Register() {
             <div className="login-card">
                 <div className="login-header">
                     <h1>Create Account</h1>
-                    <p>Join Hospital Management System</p>
+                    <p>Join HMS</p>
                 </div>
 
                 {error && <div className="error-message">{error}</div>}
@@ -111,7 +111,7 @@ function Register() {
                         />
                     </div>
 
-                    {/* Role selection removed for public registration - defaults to PATIENT */}
+                    { }
 
                     <button type="submit" className="btn-login" disabled={loading}>
                         {loading ? 'Creating Account...' : 'Register'}

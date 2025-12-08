@@ -27,7 +27,6 @@ public class AppointmentService {
     }
 
     public Appointment createAppointment(Appointment appointment) {
-        // Check for double booking
         if (appointment.getDoctor() != null && appointment.getDoctor().getId() != null
                 && appointment.getAppointmentDate() != null) {
             List<Appointment> existingAppointments = appointmentRepository
@@ -39,7 +38,6 @@ public class AppointmentService {
                             existing.getAppointmentDate());
                     long diffMinutes = Math.abs(duration.toMinutes());
 
-                    // 30 minutes window
                     if (diffMinutes < 30) {
                         throw new RuntimeException("Doctor is already booked at this time");
                     }
@@ -47,8 +45,8 @@ public class AppointmentService {
             }
         }
 
-        // Validate patient and doctor exist
-        // Validate patient and doctor exist
+        
+        
         if (appointment.getPatient() != null && appointment.getPatient().getId() != null) {
             Patient patient = patientRepository.findById(appointment.getPatient().getId())
                     .orElseThrow(() -> new RuntimeException(
@@ -66,7 +64,7 @@ public class AppointmentService {
         } else {
             throw new RuntimeException("Doctor ID is required");
         }
-        // Set default status if not provided
+        
         if (appointment.getStatus() == null) {
             appointment.setStatus(Appointment.AppointmentStatus.SCHEDULED);
         }
@@ -103,12 +101,12 @@ public class AppointmentService {
             if (appointmentDetails.getLabTestsRequired() != null) {
                 appointment.setLabTestsRequired(appointmentDetails.getLabTestsRequired());
             }
-            // Update patient if provided
+            
             if (appointmentDetails.getPatient() != null && appointmentDetails.getPatient().getId() != null) {
                 Patient patient = patientRepository.findById(appointmentDetails.getPatient().getId()).orElse(null);
                 appointment.setPatient(patient);
             }
-            // Update doctor if provided
+            
             if (appointmentDetails.getDoctor() != null && appointmentDetails.getDoctor().getId() != null) {
                 Doctor doctor = doctorRepository.findById(appointmentDetails.getDoctor().getId()).orElse(null);
                 appointment.setDoctor(doctor);

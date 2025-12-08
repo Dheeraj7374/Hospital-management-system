@@ -141,7 +141,7 @@
     display: none;
 }
 
-/* Fix for hover issue: Bridge the gap */
+
 .profile-dropdown::before {
     content: '';
     position: absolute;

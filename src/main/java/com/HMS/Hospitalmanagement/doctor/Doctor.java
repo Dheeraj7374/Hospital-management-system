@@ -23,12 +23,12 @@ public class Doctor {
     private String name;
     private String specialization;
     private String qualification;
-    private Integer experience; // years of experience
+    private Integer experience; 
     private String contactNumber;
     private String email;
-    private String imageUrl; // Doctor profile photo URL
-    private String bio; // Doctor's biography/description
-    private Double consultationFee; // Consultation fee in currency
-    private String status; // ACTIVE or INACTIVE
-    private String certificateUrl; // Path to degree certificate
+    private String imageUrl; 
+    private String bio; 
+    private Double consultationFee; 
+    private String status; 
+    private String certificateUrl; 
 }

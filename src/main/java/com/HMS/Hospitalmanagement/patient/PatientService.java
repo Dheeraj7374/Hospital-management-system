@@ -39,8 +39,8 @@ public class PatientService {
             patient.setGender(patientDetails.getGender());
             patient.setContactNumber(patientDetails.getContactNumber());
             patient.setMedicalHistory(patientDetails.getMedicalHistory());
-            // Update doctor relationship if doctor id is provided in patientDetails (use
-            // doctor field)
+            
+            
             Doctor newDoctor = patientDetails.getDoctor();
             if (newDoctor != null && newDoctor.getId() != null) {
                 Doctor persistedDoctor = doctorRepository.findById(newDoctor.getId()).orElse(null);

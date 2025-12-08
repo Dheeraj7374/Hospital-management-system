@@ -12,7 +12,7 @@ function DoctorCard({ doctor, appointmentStats }) {
 
     const handleImageClick = (e) => {
         if (isAdmin && fileInputRef.current) {
-            e.stopPropagation(); // Prevent card click if we add one later
+            e.stopPropagation();
             fileInputRef.current.click();
         }
     };
@@ -33,7 +33,7 @@ function DoctorCard({ doctor, appointmentStats }) {
         }
     };
 
-    const imageUrl = doctor.imageUrl ? `http://localhost:8081${doctor.imageUrl}` : null;
+    const imageUrl = doctor.imageUrl ? (doctor.imageUrl.startsWith('http') ? doctor.imageUrl : `http://localhost:8081${doctor.imageUrl}`) : null;
 
     return (
         <>

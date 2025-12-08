@@ -22,7 +22,7 @@ public class UserService {
         if (userRepository.existsByUsername(user.getUsername())) {
             throw new RuntimeException("Username already exists");
         }
-        // Encode password before saving
+        
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         if (user.getEnabled() == null) {
             user.setEnabled(true);

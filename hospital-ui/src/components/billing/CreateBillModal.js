@@ -11,7 +11,7 @@ function CreateBillModal({ appointments, existingBills, onClose, onSuccess }) {
         paymentStatus: 'PENDING'
     });
 
-    // New state for itemized test costs
+    
     const [testItems, setTestItems] = useState([]);
     const [customTestName, setCustomTestName] = useState('');
     const [customTestCost, setCustomTestCost] = useState('');
@@ -19,13 +19,13 @@ function CreateBillModal({ appointments, existingBills, onClose, onSuccess }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
-    // Filter appointments that don't have a bill yet
+    
     const unbilledAppointments = appointments.filter(apt =>
         !existingBills.some(bill => bill.appointment?.id === apt.id) &&
         apt.status !== 'CANCELLED'
     );
 
-    // Update total test charges whenever items change
+    
     useEffect(() => {
         const totalTestCost = testItems.reduce((sum, item) => sum + (parseFloat(item.cost) || 0), 0);
         setFormData(prev => ({ ...prev, testCharges: totalTestCost }));
@@ -42,12 +42,12 @@ function CreateBillModal({ appointments, existingBills, onClose, onSuccess }) {
                 consultationFee: apt.doctor?.consultationFee || 0,
             });
 
-            // Parse patient's required lab tests
+            
             if (apt.patient?.labTestsRequired) {
                 const tests = apt.patient.labTestsRequired.split(',').map(t => t.trim()).filter(Boolean);
                 const initialItems = tests.map(test => ({
                     name: test,
-                    cost: '' // User needs to enter cost
+                    cost: '' 
                 }));
                 setTestItems(initialItems);
             } else {
@@ -169,7 +169,7 @@ function CreateBillModal({ appointments, existingBills, onClose, onSuccess }) {
                         />
                     </div>
 
-                    {/* Itemized Test Costs Section */}
+                    {}
                     <div className="test-breakdown-section">
                         <label className="section-label">Lab Test Breakdown</label>
 
@@ -199,7 +199,7 @@ function CreateBillModal({ appointments, existingBills, onClose, onSuccess }) {
                             <p className="no-tests-msg">No lab tests required for this patient.</p>
                         )}
 
-                        {/* Add Custom Test */}
+                        {}
                         <div className="add-custom-test">
                             <input
                                 type="text"

@@ -3,7 +3,7 @@ import { MdSearch, MdClose, MdCheck } from 'react-icons/md';
 import './LabTestSelector.css';
 
 const AVAILABLE_TESTS = [
-    // Blood Tests
+    
     "Complete Blood Count (CBC)",
     "Lipid Profile",
     "Liver Function Test (LFT)",
@@ -21,7 +21,7 @@ const AVAILABLE_TESTS = [
     "Uric Acid",
     "ESR",
 
-    // Infectious Diseases
+    
     "Dengue NS1 Antigen",
     "Typhoid (Widal)",
     "Malaria Parasite",
@@ -31,12 +31,12 @@ const AVAILABLE_TESTS = [
     "Syphilis (VDRL)",
     "COVID-19 RT-PCR",
 
-    // Urine & Stool
+    
     "Urine Routine & Microscopy",
     "Urine Culture",
     "Stool Routine",
 
-    // Imaging & Radiology
+    
     "X-Ray Chest PA View",
     "X-Ray Spine",
     "X-Ray Joints",
@@ -56,7 +56,7 @@ function LabTestSelector({ selectedTests, onChange }) {
     const [selectedList, setSelectedList] = useState([]);
 
     useEffect(() => {
-        // Parse comma-separated string into array
+        
         if (selectedTests) {
             const list = selectedTests.split(',').map(t => t.trim()).filter(Boolean);
             setSelectedList(list);
@@ -88,7 +88,7 @@ function LabTestSelector({ selectedTests, onChange }) {
 
     return (
         <div className="lab-test-selector">
-            {/* Selected Tags */}
+            {}
             <div className="selected-tests-container">
                 {selectedList.map(test => (
                     <span key={test} className="test-tag">
@@ -104,7 +104,7 @@ function LabTestSelector({ selectedTests, onChange }) {
                 ))}
             </div>
 
-            {/* Search & Dropdown */}
+            {}
             <div className="test-search-wrapper">
                 <div className="test-search-box" onClick={() => setIsOpen(true)}>
                     <MdSearch className="search-icon" />

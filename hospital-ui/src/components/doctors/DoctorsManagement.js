@@ -15,10 +15,10 @@ function DoctorsManagement() {
     const [filterExp, setFilterExp] = useState('all');
     const [filterStatus, setFilterStatus] = useState('all');
     const [sortBy, setSortBy] = useState('name');
-    const [viewMode, setViewMode] = useState('table'); // 'table' or 'card'
+    const [viewMode, setViewMode] = useState('table'); 
     const [loading, setLoading] = useState(true);
 
-    // Modals
+    
     const [showAddModal, setShowAddModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDetailsModal, setShowDetailsModal] = useState(false);
@@ -46,7 +46,7 @@ function DoctorsManagement() {
     const filterAndSortDoctors = () => {
         let filtered = [...doctors];
 
-        // Search filter
+        
         if (searchTerm) {
             filtered = filtered.filter(doc =>
                 doc.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -55,12 +55,12 @@ function DoctorsManagement() {
             );
         }
 
-        // Specialization filter
+        
         if (filterSpec !== 'all') {
             filtered = filtered.filter(doc => doc.specialization === filterSpec);
         }
 
-        // Experience filter
+        
         if (filterExp !== 'all') {
             filtered = filtered.filter(doc => {
                 const exp = doc.experience || 0;
@@ -71,14 +71,14 @@ function DoctorsManagement() {
             });
         }
 
-        // Status filter
+        
         if (filterStatus !== 'all') {
             filtered = filtered.filter(doc =>
                 (doc.status || 'ACTIVE').toUpperCase() === filterStatus.toUpperCase()
             );
         }
 
-        // Sort
+        
         filtered.sort((a, b) => {
             if (sortBy === 'name') {
                 return a.name.localeCompare(b.name);
@@ -141,7 +141,7 @@ function DoctorsManagement() {
 
     return (
         <div className="doctors-management-container">
-            {/* Header */}
+            {}
             <div className="doctors-header">
                 <div>
                     <h1>Doctors Management</h1>
@@ -155,7 +155,7 @@ function DoctorsManagement() {
                 )}
             </div>
 
-            {/* Statistics */}
+            {}
             <div className="doctors-stats">
                 <div className="stat-card">
                     <div className="stat-value">{stats.total}</div>
@@ -171,7 +171,7 @@ function DoctorsManagement() {
                 </div>
             </div>
 
-            {/* Filters */}
+            {}
             <div className="doctors-filters">
                 <div className="search-box">
                     <MdSearch />
@@ -224,7 +224,7 @@ function DoctorsManagement() {
                 </div>
             </div>
 
-            {/* Content */}
+            {}
             {filteredDoctors.length > 0 ? (
                 <DoctorsTable
                     doctors={filteredDoctors}
@@ -243,7 +243,7 @@ function DoctorsManagement() {
                 </div>
             )}
 
-            {/* Modals */}
+            {}
             {showAddModal && (
                 <AddDoctorModal
                     onClose={() => setShowAddModal(false)}

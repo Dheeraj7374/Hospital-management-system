@@ -16,7 +16,7 @@ function DoctorDetailsModal({ doctor, onClose, onEdit, onDelete }) {
         try {
             const response = await appointmentAPI.getAll({ doctorId: doctor.id });
             const aptList = response.data;
-            setAppointments(aptList.slice(0, 5)); // Recent 5
+            setAppointments(aptList.slice(0, 5)); 
 
             const now = new Date();
             const stats = {
@@ -52,7 +52,7 @@ function DoctorDetailsModal({ doctor, onClose, onEdit, onDelete }) {
                 </div>
 
                 <div className="doctor-details-content">
-                    {/* Header with Photo */}
+                    {}
                     <div className="doctor-header-section">
                         {doctor.imageUrl ? (
                             <img src={doctor.imageUrl} alt={doctor.name} className="doctor-photo-large" />
@@ -68,7 +68,7 @@ function DoctorDetailsModal({ doctor, onClose, onEdit, onDelete }) {
                         </div>
                     </div>
 
-                    {/* Contact Info */}
+                    {}
                     <div className="info-section">
                         <h4>Contact Information</h4>
                         <div className="info-grid">
@@ -89,7 +89,7 @@ function DoctorDetailsModal({ doctor, onClose, onEdit, onDelete }) {
                         </div>
                     </div>
 
-                    {/* Professional Info */}
+                    {}
                     <div className="info-section">
                         <h4>Professional Information</h4>
                         <div className="info-grid">
@@ -109,7 +109,7 @@ function DoctorDetailsModal({ doctor, onClose, onEdit, onDelete }) {
                         </div>
                     </div>
 
-                    {/* Bio */}
+                    {}
                     {doctor.bio && (
                         <div className="info-section">
                             <h4>About</h4>
@@ -117,7 +117,7 @@ function DoctorDetailsModal({ doctor, onClose, onEdit, onDelete }) {
                         </div>
                     )}
 
-                    {/* Appointment Statistics */}
+                    {}
                     <div className="info-section">
                         <h4>Appointment Statistics</h4>
                         <div className="stats-grid">
@@ -136,7 +136,7 @@ function DoctorDetailsModal({ doctor, onClose, onEdit, onDelete }) {
                         </div>
                     </div>
 
-                    {/* Recent Appointments */}
+                    {}
                     {appointments.length > 0 && (
                         <div className="info-section">
                             <h4>Recent Appointments</h4>

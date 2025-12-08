@@ -24,7 +24,7 @@ public class Bill {
 
     private Double consultationFee;
     private Double testCharges;
-    private Double totalAmount; // Automatically calculated
+    private Double totalAmount; 
 
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
@@ -35,7 +35,7 @@ public class Bill {
         PENDING, PAID, CANCELLED
     }
 
-    // Calculate total amount
+    
     public void calculateTotal() {
         this.totalAmount = (consultationFee != null ? consultationFee : 0.0) +
                 (testCharges != null ? testCharges : 0.0);

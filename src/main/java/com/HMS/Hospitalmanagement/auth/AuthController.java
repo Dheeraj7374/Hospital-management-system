@@ -34,18 +34,18 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody User user) {
         try {
-            // STRICTLY enforce PATIENT role for public registration
-            // Ignore any role sent in the request body
+            
+            
             user.setRole(Role.PATIENT);
 
             User registeredUser = userService.registerUser(user);
 
-            // Auto-create Patient profile
+            
             if (registeredUser.getRole() == Role.PATIENT) {
                 com.HMS.Hospitalmanagement.patient.Patient newPatient = new com.HMS.Hospitalmanagement.patient.Patient();
-                newPatient.setName(registeredUser.getUsername()); // Use username as name for now
-                newPatient.setAge(0); // Default
-                newPatient.setGender("Other"); // Default
+                newPatient.setName(registeredUser.getUsername()); 
+                newPatient.setAge(0); 
+                newPatient.setGender("Other"); 
                 newPatient.setContactNumber("N/A");
                 newPatient.setMedicalHistory("New Patient");
                 patientService.createPatient(newPatient);
@@ -82,7 +82,7 @@ public class AuthController {
         response.put("username", user.getUsername());
         response.put("role", user.getRole());
 
-        // Add profile ID based on role
+        
         if (user.getRole() == Role.DOCTOR) {
             com.HMS.Hospitalmanagement.doctor.Doctor doctor = doctorRepository.findByName(user.getUsername());
             if (doctor != null) {
@@ -100,10 +100,10 @@ public class AuthController {
 
     @PostMapping("/change-password")
     public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest request) {
-        // In a real app, we should get the username from the security context
-        // For now, we'll trust the client to send the username (NOT SECURE for
-        // production, but fits current state)
-        // Better: extract username from JWT token in the header
+        
+        
+        
+        
 
         Optional<User> userOpt = userService.findByUsername(request.getUsername());
         if (userOpt.isEmpty()) {
@@ -124,7 +124,7 @@ public class AuthController {
         System.out.println("Requester: " + request.getRequesterUsername());
         System.out.println("New Admin: " + request.getUsername());
 
-        // Security check: Ensure the requester is an ADMIN
+        
         Optional<User> requesterOpt = userService.findByUsername(request.getRequesterUsername());
 
         if (requesterOpt.isEmpty()) {
@@ -158,7 +158,7 @@ public class AuthController {
         }
     }
 
-    // DTOs
+    
     public static class LoginRequest {
         private String username;
         private String password;

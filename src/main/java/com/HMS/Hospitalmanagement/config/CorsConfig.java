@@ -15,7 +15,7 @@ public class CorsConfig {
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://localhost:3000"); // React app
+        config.addAllowedOrigin("http://localhost:3000"); 
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
 

@@ -1,4 +1,4 @@
-/* Reuse modal styles */
+
 .create-bill-modal,
 .edit-bill-modal {
     max-width: 600px;
@@ -75,7 +75,7 @@
     color: #f59e0b;
 }
 
-/* Test Breakdown Section */
+
 .test-breakdown-section {
     background: #f8fafc;
     padding: 16px;

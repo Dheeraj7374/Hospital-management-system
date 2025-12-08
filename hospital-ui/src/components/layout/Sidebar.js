@@ -23,14 +23,14 @@ function Sidebar({ role }) {
         { path: '/settings', icon: MdSettings, label: 'Settings', roles: ['ADMIN'] },
     ];
 
-    // Filter items based on user role
+
     const menuItems = allMenuItems.filter(item => item.roles.includes(role));
 
     return (
         <div className="sidebar">
             <div className="sidebar-logo">
                 <div className="logo-icon">🏥</div>
-                <h2>Hospital Management System</h2>
+                <h2>HMS</h2>
             </div>
 
             <nav className="sidebar-nav">

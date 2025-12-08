@@ -7,7 +7,7 @@ function Settings() {
     const role = localStorage.getItem('role');
     const username = localStorage.getItem('username');
 
-    // Password Change State
+    
     const [passwordData, setPasswordData] = useState({
         currentPassword: '',
         newPassword: '',
@@ -15,7 +15,7 @@ function Settings() {
     });
     const [passwordMsg, setPasswordMsg] = useState({ type: '', text: '' });
 
-    // Admin Creation State
+    
     const [adminData, setAdminData] = useState({
         username: '',
         password: '',

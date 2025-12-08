@@ -26,7 +26,7 @@ function App() {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    // Force reload to clear state and redirect to login
+    
     window.location.href = '/login';
   };
 

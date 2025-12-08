@@ -23,13 +23,13 @@ function MyAppointments() {
             const role = localStorage.getItem('role');
 
             if (role === 'PATIENT' && username) {
-                // Filter appointments for the logged-in patient
+                
                 const myAppointments = allAppointments.filter(apt =>
                     apt.patient?.name?.toLowerCase() === username.toLowerCase()
                 );
                 setAppointments(myAppointments);
             } else {
-                // Admin/Doctor sees all (or handle Doctor specific logic later)
+                
                 setAppointments(allAppointments);
             }
             setLoading(false);

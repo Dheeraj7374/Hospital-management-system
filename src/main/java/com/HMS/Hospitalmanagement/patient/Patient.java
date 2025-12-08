@@ -24,11 +24,11 @@ public class Patient {
     private Long id;
 
     private String name;
-    private Integer age; // Changed from int to Integer to allow null
+    private Integer age; 
     private String gender;
     private String contactNumber;
     private String medicalHistory;
-    // Removed doctorTreated string, added relation to Doctor
+    
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;

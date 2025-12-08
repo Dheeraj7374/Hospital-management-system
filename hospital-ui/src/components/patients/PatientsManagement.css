@@ -1,4 +1,4 @@
-/* Reuse styles from Doctors Management */
+
 .patients-management-container {
     padding: 32px;
     max-width: 1400px;
@@ -45,7 +45,7 @@
     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
 }
 
-/* Statistics */
+
 .patients-stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -85,7 +85,7 @@
     margin-top: 4px;
 }
 
-/* Filters */
+
 .patients-filters {
     display: flex;
     gap: 12px;
@@ -131,7 +131,7 @@
     border-color: #667eea;
 }
 
-/* Empty/Loading States */
+
 .patients-management-loading {
     text-align: center;
     padding: 60px 20px;

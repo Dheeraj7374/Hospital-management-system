@@ -38,19 +38,19 @@ function BookingModal({ doctor, onClose, onSuccess }) {
         try {
             const username = localStorage.getItem('username');
 
-            // 1. Find Patient ID
-            // In a real app, this should be in the auth token or a dedicated endpoint
+            
+            
             const patientsRes = await import('../../services/api').then(m => m.patientAPI.getAll());
             let patient = patientsRes.data.find(p => p.name.toLowerCase() === username?.toLowerCase());
 
             if (!patient) {
-                // Auto-create patient profile if not found
+                
                 console.log('Patient profile not found. Creating new profile...');
 
                 try {
                     const newPatientRes = await import('../../services/api').then(m => m.patientAPI.create({
                         name: username,
-                        age: 0, // Default age to avoid DB constraints
+                        age: 0, 
                         gender: 'Other',
                         contactNumber: 'N/A',
                         medicalHistory: 'New Patient'
@@ -64,15 +64,15 @@ function BookingModal({ doctor, onClose, onSuccess }) {
                 }
             }
 
-            // 2. Check for Double Booking - MOVED TO BACKEND
-            // The backend will throw an error if the slot is taken.
+            
+            
 
             const appointmentDateTime = new Date(selectedDate);
             const [hours, minutes] = selectedTime.split(':');
             appointmentDateTime.setHours(parseInt(hours), parseInt(minutes), 0);
             const isoDateTime = appointmentDateTime.toISOString();
 
-            // 3. Create Appointment
+            
             const appointmentData = {
                 patient: { id: patient.id },
                 doctor: { id: doctor.id },
@@ -86,7 +86,7 @@ function BookingModal({ doctor, onClose, onSuccess }) {
 
             alert('Appointment booked successfully!');
             onClose();
-            onSuccess(); // Refresh parent list if needed
+            onSuccess(); 
 
             setTimeout(() => {
                 navigate('/appointments');

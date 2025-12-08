@@ -17,9 +17,9 @@ function Profile() {
     const [editedUser, setEditedUser] = useState({ ...user });
 
     useEffect(() => {
-        // In a real app, fetch user data from API here
-        // const storedUser = JSON.parse(localStorage.getItem('user'));
-        // if (storedUser) setUser(storedUser);
+        
+        
+        
     }, []);
 
     const handleChange = (e) => {
@@ -30,7 +30,7 @@ function Profile() {
     const handleSave = () => {
         setUser(editedUser);
         setIsEditing(false);
-        // In a real app, make API call to update user profile
+        
         alert('Profile updated successfully!');
     };
 

@@ -16,7 +16,7 @@ function PatientDetailsModal({ patient, onClose, onEdit, onDelete }) {
         try {
             const response = await appointmentAPI.getAll({ patientId: patient.id });
             const aptList = response.data;
-            setAppointments(aptList.slice(0, 5)); // Recent 5
+            setAppointments(aptList.slice(0, 5)); 
 
             const now = new Date();
             const stats = {
@@ -49,7 +49,7 @@ function PatientDetailsModal({ patient, onClose, onEdit, onDelete }) {
                 </div>
 
                 <div className="patient-details-content">
-                    {/* Header with ID and Name */}
+                    {}
                     <div className="patient-header-section">
                         <div className="patient-icon-large">{getGenderIcon(patient.gender)}</div>
                         <div className="patient-header-info">
@@ -63,7 +63,7 @@ function PatientDetailsModal({ patient, onClose, onEdit, onDelete }) {
                         </div>
                     </div>
 
-                    {/* Contact Info */}
+                    {}
                     <div className="info-section">
                         <h4>Contact Information</h4>
                         <div className="info-grid">
@@ -77,7 +77,7 @@ function PatientDetailsModal({ patient, onClose, onEdit, onDelete }) {
                         </div>
                     </div>
 
-                    {/* Assigned Doctor */}
+                    {}
                     <div className="info-section">
                         <h4>Assigned Doctor</h4>
                         {patient.doctor ? (
@@ -92,7 +92,7 @@ function PatientDetailsModal({ patient, onClose, onEdit, onDelete }) {
                         )}
                     </div>
 
-                    {/* Medical History */}
+                    {}
                     {patient.medicalHistory && (
                         <div className="info-section">
                             <h4>Medical History</h4>
@@ -100,7 +100,7 @@ function PatientDetailsModal({ patient, onClose, onEdit, onDelete }) {
                         </div>
                     )}
 
-                    {/* Lab Tests */}
+                    {}
                     {patient.labTestsRequired && (
                         <div className="info-section">
                             <h4>Lab Tests Required</h4>
@@ -108,7 +108,7 @@ function PatientDetailsModal({ patient, onClose, onEdit, onDelete }) {
                         </div>
                     )}
 
-                    {/* Appointment Statistics */}
+                    {}
                     <div className="info-section">
                         <h4>Appointment Statistics</h4>
                         <div className="stats-grid">
@@ -127,7 +127,7 @@ function PatientDetailsModal({ patient, onClose, onEdit, onDelete }) {
                         </div>
                     </div>
 
-                    {/* Recent Appointments */}
+                    {}
                     {appointments.length > 0 && (
                         <div className="info-section">
                             <h4>Recent Appointments</h4>

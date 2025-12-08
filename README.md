@@ -42,7 +42,7 @@ A comprehensive, full-stack web application designed to streamline hospital oper
 ## 📋 Prerequisites
 
 Before running the application, ensure you have the following installed:
-1.  **Java JDK 17** or higher.
+1.  **Java JDK 21** or higher.
 2.  **Node.js** (v14 or higher) and **npm**.
 3.  **MySQL Server**.
 

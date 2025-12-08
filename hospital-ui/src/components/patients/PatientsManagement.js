@@ -19,7 +19,7 @@ function PatientsManagement() {
     const [sortBy, setSortBy] = useState('name');
     const [loading, setLoading] = useState(true);
 
-    // Modals
+    
     const [showAddModal, setShowAddModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDetailsModal, setShowDetailsModal] = useState(false);
@@ -58,11 +58,11 @@ function PatientsManagement() {
     const filterAndSortPatients = () => {
         let filtered = [...patients];
 
-        // Search filter - includes ID, name, contact, doctor
+        
         if (searchTerm) {
             const term = searchTerm.toLowerCase();
             filtered = filtered.filter(patient => {
-                const idMatch = patient.id?.toString() === searchTerm; // Exact ID match
+                const idMatch = patient.id?.toString() === searchTerm; 
                 const nameMatch = patient.name?.toLowerCase().includes(term);
                 const contactMatch = patient.contactNumber?.toLowerCase().includes(term);
                 const doctorMatch = patient.doctor?.name?.toLowerCase().includes(term);
@@ -70,17 +70,17 @@ function PatientsManagement() {
             });
         }
 
-        // Gender filter
+        
         if (filterGender !== 'all') {
             filtered = filtered.filter(p => p.gender?.toLowerCase() === filterGender.toLowerCase());
         }
 
-        // Doctor filter
+        
         if (filterDoctor !== 'all') {
             filtered = filtered.filter(p => p.doctor?.id?.toString() === filterDoctor);
         }
 
-        // Age filter
+        
         if (filterAge !== 'all') {
             filtered = filtered.filter(p => {
                 const age = p.age || 0;
@@ -91,7 +91,7 @@ function PatientsManagement() {
             });
         }
 
-        // Sort
+        
         filtered.sort((a, b) => {
             if (sortBy === 'name') {
                 return (a.name || '').localeCompare(b.name || '');
@@ -159,7 +159,7 @@ function PatientsManagement() {
 
     return (
         <div className="patients-management-container">
-            {/* Header */}
+            {}
             <div className="patients-header">
                 <div>
                     <h1>Patients Management</h1>
@@ -171,7 +171,7 @@ function PatientsManagement() {
                 </button>
             </div>
 
-            {/* Statistics */}
+            {}
             <div className="patients-stats">
                 <div className="stat-card">
                     <div className="stat-value">{stats.total}</div>
@@ -187,7 +187,7 @@ function PatientsManagement() {
                 </div>
             </div>
 
-            {/* Filters */}
+            {}
             <div className="patients-filters">
                 <div className="search-box">
                     <MdSearch />
@@ -226,7 +226,7 @@ function PatientsManagement() {
                 </select>
             </div>
 
-            {/* Content */}
+            {}
             {filteredPatients.length > 0 ? (
                 <PatientsTable
                     patients={filteredPatients}
@@ -244,7 +244,7 @@ function PatientsManagement() {
                 </div>
             )}
 
-            {/* Modals */}
+            {}
             {showAddModal && (
                 <AddPatientModal
                     doctors={doctors}

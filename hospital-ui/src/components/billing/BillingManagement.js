@@ -16,11 +16,11 @@ function BillingManagement() {
     const [filterDate, setFilterDate] = useState('all');
     const [loading, setLoading] = useState(true);
 
-    // User Role
+    
     const userRole = localStorage.getItem('role');
     const username = localStorage.getItem('username');
 
-    // Modals
+    
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showInvoiceModal, setShowInvoiceModal] = useState(false);
@@ -43,11 +43,11 @@ function BillingManagement() {
 
             let allBills = billsRes.data;
 
-            // Filter for Patient Role
+            
             if (userRole === 'PATIENT') {
-                // Assuming username matches patient name or we filter by some other means
-                // For now, we'll filter by patient name matching username loosely
-                // In a real app, backend should handle this security
+                
+                
+                
                 allBills = allBills.filter(bill =>
                     bill.appointment?.patient?.name?.toLowerCase().includes(username.toLowerCase())
                 );
@@ -65,7 +65,7 @@ function BillingManagement() {
     const filterBills = () => {
         let filtered = [...bills];
 
-        // Search filter
+        
         if (searchTerm) {
             const term = searchTerm.toLowerCase();
             filtered = filtered.filter(bill =>
@@ -75,12 +75,12 @@ function BillingManagement() {
             );
         }
 
-        // Status filter
+        
         if (filterStatus !== 'all') {
             filtered = filtered.filter(bill => bill.paymentStatus === filterStatus);
         }
 
-        // Date filter
+        
         if (filterDate !== 'all') {
             const now = new Date();
             const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -94,7 +94,7 @@ function BillingManagement() {
             });
         }
 
-        // Sort by date descending
+        
         filtered.sort((a, b) => new Date(b.billDate) - new Date(a.billDate));
 
         setFilteredBills(filtered);
@@ -152,7 +152,7 @@ function BillingManagement() {
 
     return (
         <div className="billing-container">
-            {/* Header */}
+            {}
             <div className="billing-header">
                 <div>
                     <h1>{userRole === 'PATIENT' ? 'My Bills' : 'Billing Management'}</h1>
@@ -165,7 +165,7 @@ function BillingManagement() {
                 )}
             </div>
 
-            {/* Statistics */}
+            {}
             <div className="billing-stats">
                 <div className="stat-card revenue">
                     <div className="stat-icon"><MdAttachMoney /></div>
@@ -190,7 +190,7 @@ function BillingManagement() {
                 </div>
             </div>
 
-            {/* Filters */}
+            {}
             <div className="billing-filters">
                 <div className="search-box">
                     <MdSearch />
@@ -215,7 +215,7 @@ function BillingManagement() {
                 </select>
             </div>
 
-            {/* Content */}
+            {}
             {filteredBills.length > 0 ? (
                 <BillsTable
                     bills={filteredBills}
@@ -229,7 +229,7 @@ function BillingManagement() {
                 </div>
             )}
 
-            {/* Modals */}
+            {}
             {showCreateModal && (
                 <CreateBillModal
                     appointments={appointments}

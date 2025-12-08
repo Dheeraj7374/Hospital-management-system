@@ -20,7 +20,7 @@ function InvoiceModal({ bill, onClose }) {
                 </div>
 
                 <div className="invoice-container" id="printable-invoice">
-                    {/* Header */}
+                    {}
                     <div className="invoice-header">
                         <div className="hospital-branding">
                             <h1>City Hospital</h1>
@@ -51,7 +51,7 @@ function InvoiceModal({ bill, onClose }) {
 
                     <hr className="divider" />
 
-                    {/* Patient & Doctor Info */}
+                    {}
                     <div className="invoice-details">
                         <div className="detail-box">
                             <h3>Bill To:</h3>
@@ -66,7 +66,7 @@ function InvoiceModal({ bill, onClose }) {
                         </div>
                     </div>
 
-                    {/* Items Table */}
+                    {}
                     <table className="invoice-items">
                         <thead>
                             <tr>
@@ -92,7 +92,7 @@ function InvoiceModal({ bill, onClose }) {
                         </tfoot>
                     </table>
 
-                    {/* Footer */}
+                    {}
                     <div className="invoice-footer">
                         <p>Thank you for choosing City Hospital.</p>
                         <p className="small-text">This is a computer-generated invoice and does not require a signature.</p>

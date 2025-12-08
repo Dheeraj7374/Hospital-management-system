@@ -27,20 +27,20 @@ function Login({ onLoginSuccess }) {
 
         try {
             if (isLogin) {
-                // Login
+
                 const response = await authAPI.login({
                     username: formData.username,
                     password: formData.password,
                 });
 
-                // Store token and user data
+
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('username', response.data.username);
                 localStorage.setItem('role', response.data.role);
 
                 onLoginSuccess();
             } else {
-                // Register
+
                 await authAPI.register(formData);
                 setIsLogin(true);
                 setError('Registration successful! Please login.');
@@ -61,7 +61,7 @@ function Login({ onLoginSuccess }) {
         <div className="login-container">
             <div className="login-card">
                 <div className="login-header">
-                    <h1>🏥 Hospital Management System</h1>
+                    <h1>🏥 HMS</h1>
                     <p>{isLogin ? 'Welcome Back' : 'Create Account'}</p>
                 </div>
 

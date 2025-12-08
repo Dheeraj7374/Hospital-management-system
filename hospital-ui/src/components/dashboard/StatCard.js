@@ -14,9 +14,9 @@ function StatCard({ title, value, icon: Icon, color, data }) {
                 </div>
             </div>
 
-            {/* Chart removed per user request */}
+            {}
 
-            {/* Legend removed as it was hardcoded and incorrect */}
+            {}
         </div>
     );
 }

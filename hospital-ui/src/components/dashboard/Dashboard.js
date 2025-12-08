@@ -50,7 +50,7 @@ function Dashboard() {
 
             setDoctors(doctorsRes.data);
 
-            // Calculate appointment stats for each doctor
+            
             const appointmentsByDoctor = {};
             appointmentsRes.data.forEach(apt => {
                 const doctorId = apt.doctor?.id;
@@ -72,7 +72,7 @@ function Dashboard() {
         }
     };
 
-    // Calculate chart data from appointments
+    
     const getAppointmentChartData = () => {
         const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         const today = new Date();
@@ -88,7 +88,7 @@ function Dashboard() {
             });
         }
 
-        // Count appointments for each day
+        
         if (stats.allAppointments) {
             stats.allAppointments.forEach(apt => {
                 const aptDate = apt.appointmentDate.split('T')[0];
@@ -99,12 +99,12 @@ function Dashboard() {
             });
         }
 
-        // Find max value for scaling
-        const maxCount = Math.max(...last7Days.map(d => d.count), 1); // Avoid divide by zero
+        
+        const maxCount = Math.max(...last7Days.map(d => d.count), 1); 
 
         return last7Days.map(d => ({
             label: d.dayName,
-            value: (d.count / maxCount) * 100, // Scale to percentage for bar height
+            value: (d.count / maxCount) * 100, 
             actualValue: d.count
         }));
     };

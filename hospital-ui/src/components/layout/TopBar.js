@@ -12,7 +12,7 @@ function TopBar({ onLogout, username, role }) {
     return (
         <div className="topbar">
             <div className="topbar-left">
-                {/* Search removed as per user request */}
+                {}
             </div>
 
             <div className="topbar-right">
